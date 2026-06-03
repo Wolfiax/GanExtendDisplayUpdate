@@ -15,12 +15,8 @@ namespace GanExtendDisplay
 
         public static string AppendMainHoverText(Chara character, string originalText)
         {
-            // Keep the game's normal header, but remove the unwanted extra hover lines that
-            // GanExtendDisplay/Elin may already have placed in the original text.
-            // EXP is preserved and re-added as its own controlled line below.
             string result = AddHeaderBadges(character, CleanOriginalHoverText(originalText));
 
-            // Reorganized display order.
             AppendLine(ref result, ModConfig.CharacterLine1, character, BuildVitalsLine);
             AppendLine(ref result, ModConfig.CharacterLine2, character, BuildSummaryLine);
             AppendLine(ref result, ModConfig.CharacterLine3, character, BuildAttributeLine);
@@ -69,9 +65,6 @@ namespace GanExtendDisplay
 
             string result = text;
 
-            // Remove original vanilla/older-mod resource lines so this formatter can rebuild
-            // them in a predictable order from config. This also prevents the unlabeled
-            // "Game Game" work/hobby line from being shown.
             result = Regex.Replace(result, @"(?m)^.*\bFood\s*:[^\r\n]*(?:\r?\n)?", string.Empty);
             result = Regex.Replace(result, @"(?m)^\s*Game\s+Game\s*(?:\r?\n)?", string.Empty);
             result = Regex.Replace(result, @"(?m)^.*\bWeight\s*:[^\r\n]*(?:\r?\n)?", string.Empty);
@@ -224,9 +217,6 @@ namespace GanExtendDisplay
 
         private static string BuildWeightLine(Chara character)
         {
-            // Character.Weight/weight is the character's body weight in current Elin builds,
-            // so do not use it for carried inventory weight. Prefer the owned item container
-            // and then fall back to the game's own weight-limit methods.
             object inventory = ReflectionReader.Member(character, "things")
                                ?? ReflectionReader.Member(character, "Things")
                                ?? ReflectionReader.Member(character, "inventory")
@@ -268,9 +258,6 @@ namespace GanExtendDisplay
 
         private static string FormatWeight(int value)
         {
-            // Elin stores many weight values as thousandths. Showing the raw integer makes
-            // carried weight look wildly incorrect, so convert obvious raw values to the
-            // same compact decimal style players expect. Small values are left untouched.
             if (value >= 1000)
                 return (value / 1000f).ToString("0.#");
 
