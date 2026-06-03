@@ -1,0 +1,8 @@
+<Meta>
+  <title>GanExtendDisplay Professional Rewrite</title>
+  <id>gan_extend_display_professional_rewrite</id>
+  <author>GanExtendDisplay community rewrite</author>
+  <loadPriority>100</loadPriority>
+  <description>Full-feature clean C# rewrite of Gan Extend Display with character lines, resistances, attributes, favorite gifts, conditions, acts, feats, item details, enchantment values, and notification details.</description>
+  <version>1.2.0</version>
+</Meta>
