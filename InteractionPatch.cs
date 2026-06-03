@@ -31,9 +31,6 @@ namespace GanExtendDisplay
     {
         public static string AppendHarvestTaskInfo(BaseTaskHarvest task, string originalText)
         {
-            // Keep harvest/object hover focused on the hovered target.
-            // Do not prepend the currently equipped tool name; it makes tree/ore hover text
-            // look like the equipment itself is being hovered.
             string levelText = task.IsTooHard
                 ? $"Lv:{task.toolLv}<{task.reqLv}"
                 : $"Lv:{task.toolLv} >= {task.reqLv}";
