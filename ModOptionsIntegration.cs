@@ -68,7 +68,6 @@ namespace GanExtendDisplay
 
         private static void T(ModOptionController controller, string key, string english)
         {
-            // ModOptions supports multiple translation columns. Supplying the same English text keeps this file simple and readable.
             controller.SetTranslation(key, english, english);
         }
 
@@ -175,7 +174,6 @@ namespace GanExtendDisplay
             BindToggle(builder, "tg_lAffGiftpcf", ModConfig.CharacterAffinity.PcFactionOnlyEntry);
             BindInputInt(builder, "in_lAffGiftsz", ModConfig.CharacterAffinity.FontSizeEntry, 8, 40);
 
-            // Keep Favorite Gift synced with the same controls because the formatter now shows affinity and gift on one line.
             ModConfig.CharacterFavoriteGift.DisplayModeEntry.Value = ModConfig.CharacterAffinity.DisplayModeEntry.Value;
             ModConfig.CharacterFavoriteGift.PcFactionOnlyEntry.Value = ModConfig.CharacterAffinity.PcFactionOnlyEntry.Value;
             ModConfig.CharacterFavoriteGift.FontSizeEntry.Value = ModConfig.CharacterAffinity.FontSizeEntry.Value;
