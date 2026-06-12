@@ -17,10 +17,11 @@ namespace GanExtendDisplay
         {
             string result = AddHeaderBadges(character, CleanOriginalHoverText(originalText));
 
-            AppendLine(ref result, ModConfig.CharacterLine1, character, BuildVitalsLine);
-            AppendLine(ref result, ModConfig.CharacterLine2, character, BuildSummaryLine);
-            AppendLine(ref result, ModConfig.CharacterLine3, character, BuildAttributeLine);
-            AppendLine(ref result, ModConfig.CharacterLine4, character, BuildResistanceLine);
+            AppendLine(ref result, ModConfig.CharacterRaceClass, character, BuildRaceClassLine);
+            AppendLine(ref result, ModConfig.CharacterLine2, character, BuildVitalsLine);
+            AppendLine(ref result, ModConfig.CharacterLine3, character, BuildSummaryLine);
+            AppendLine(ref result, ModConfig.CharacterAttributes, character, BuildAttributeLine);
+            AppendLine(ref result, ModConfig.CharacterResistances, character, BuildResistanceLine);
             AppendAffinityGiftLine(ref result, character);
 
             return result;
@@ -57,7 +58,6 @@ namespace GanExtendDisplay
             return text;
         }
 
-
         private static string CleanOriginalHoverText(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -70,6 +70,7 @@ namespace GanExtendDisplay
             result = Regex.Replace(result, @"(?m)^.*\bWeight\s*:[^\r\n]*(?:\r?\n)?", string.Empty);
             result = Regex.Replace(result, @"(?mi)^.*\bEXP\s*[:：][^\r\n]*(?:\r?\n)?", string.Empty);
             result = Regex.Replace(result, @"(?mi)^.*\bExperience\s*[:：][^\r\n]*(?:\r?\n)?", string.Empty);
+            result = Regex.Replace(result, @"(?mi)^.*\bRace\s*:[^\r\n]*(?:\r?\n)?", string.Empty);
 
             return result.TrimEnd();
         }
@@ -425,7 +426,6 @@ namespace GanExtendDisplay
             return new Color(1f, 0.25f, 0.25f);
         }
 
-
         private static string BuildFavoriteGiftText(Chara character)
         {
             try
@@ -458,7 +458,49 @@ namespace GanExtendDisplay
                 return string.Empty;
             }
         }
+        private static string BuildRaceClassLine(Chara character)
+        {
+            string race = "Unknown";
+            string job = "Unknown";
 
+            try
+            {
+                if (character.race != null)
+                    race = ToDisplayName(character.race.GetName());
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                if (character.job != null)
+                    job = ToDisplayName(character.job.GetName());
+            }
+            catch
+            {
+            }
+
+            return "Race: " + race + " | Class: " + job;
+        }
+
+        private static string ToDisplayName(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return "Unknown";
+
+            string[] words = value.Split(' ');
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (string.IsNullOrWhiteSpace(words[i]))
+                    continue;
+
+                string word = words[i].ToLowerInvariant();
+                words[i] = char.ToUpperInvariant(word[0]) + word.Substring(1);
+            }
+
+            return string.Join(" ", words);
+        }
 
         private static string BuildVitalsLine(Chara character)
         {
