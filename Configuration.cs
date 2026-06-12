@@ -75,6 +75,9 @@ namespace GanExtendDisplay
         public static DisplayToggle NotificationDisplay { get; private set; }
         public static DisplayToggle EnchantDisplay { get; private set; }
 
+        public static ConfigEntry<bool> ShowItemPrice { get; private set; }
+        public static ConfigEntry<bool> ShowItemRarity { get; private set; }
+
         public static CharacterLineSettings CharacterLine1 { get; private set; }
         public static CharacterLineSettings CharacterLine2 { get; private set; }
         public static CharacterLineSettings CharacterLine3 { get; private set; }
@@ -95,6 +98,18 @@ namespace GanExtendDisplay
             InteractDisplay = new DisplayToggle(BindDisplay(config, "Affected Display", "Interact Display", "Keep", "Extra interaction hover information."));
             NotificationDisplay = new DisplayToggle(BindDisplay(config, "Affected Display", "Notification UI Display", "Keep", "Extra notification UI values."));
             EnchantDisplay = new DisplayToggle(BindDisplay(config, "Affected Display", "Enchant Display", "Keep", "Extra enchantment and DNA information."));
+
+            ShowItemPrice = config.Bind(
+                "Thing Display",
+                "Show Item Price",
+                true,
+                "Show item price on hover.");
+
+            ShowItemRarity = config.Bind(
+                "Thing Display",
+                "Show Item Rarity",
+                true,
+                "Show item rarity on hover.");
 
             CharacterLine1 = BindCharacterLine(config, "Display Line1", "Keep", false, 18, "Sex, age, race, job, AI, armor skill, and attack style.");
             CharacterLine2 = BindCharacterLine(config, "Display Line2", "Keep", false, 18, "HP, MP, SP, DV, PV, and speed.");
