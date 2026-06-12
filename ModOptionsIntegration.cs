@@ -38,13 +38,16 @@ namespace GanExtendDisplay
         private static void SetTranslations(ModOptionController controller)
         {
             T(controller, TabId, "Extend Display");
+
             T(controller, "ExtDisplay.Sec.Affected", "Affected Display");
             T(controller, "ExtDisplay.Sec.Chara", "Character Display Lines");
+
             T(controller, "ExtDisplay.Keep", "Keep (always visible)");
             T(controller, "ExtDisplay.Hide", "Hide (Alt to reveal)");
             T(controller, "ExtDisplay.Disable", "Disable (never shown)");
-            T(controller, "ExtDisplay.PCFac", "PC faction only");
-            T(controller, "ExtDisplay.IPL", "Items Per Line (0 = no limit):");
+
+            T(controller, "ExtDisplay.PCFac", "PC Faction Only");
+            T(controller, "ExtDisplay.IPL", "Items Per Line (0 = no limit)");
             T(controller, "ExtDisplay.CharaNote", "Character line changes take effect immediately.");
 
             T(controller, "ExtDisplay.F.Chara", "Character Display");
@@ -54,16 +57,19 @@ namespace GanExtendDisplay
             T(controller, "ExtDisplay.F.Enchant", "Enchant Display (Equipment / DNA)");
             T(controller, "ExtDisplay.F.AffectedNote", "Choose which tooltip groups Gan Extend Display is allowed to modify.");
 
-            T(controller, "ExtDisplay.L.L1", "Line 1: Sex, Age, Race, Job, AI, Armor Skill, Attack Style");
-            T(controller, "ExtDisplay.L.L2", "Line 2: HP, DV, PV, Speed");
-            T(controller, "ExtDisplay.L.L3", "Line 3: SP, Hunger, Works / Hobbies");
-            T(controller, "ExtDisplay.L.L4", "Line 4: MP, Weight, EXP");
-            T(controller, "ExtDisplay.L.Res", "Resist Line: Elemental Resistances");
-            T(controller, "ExtDisplay.L.Att", "Attributes Line: STR CON DEX PER LRN WIL MAG CHR");
-            T(controller, "ExtDisplay.L.AffGift", "Affinity and Favorite Gift Line");
+            T(controller, "ExtDisplay.ItemPrice", "Show Item Price");
+            T(controller, "ExtDisplay.ItemRarity", "Show Item Rarity");
+
+            T(controller, "ExtDisplay.L.L1", "Line 1: Identity / Sex / Age / Race / Job");
+            T(controller, "ExtDisplay.L.L2", "Line 2: HP / SP / MP / DV / PV / Speed");
+            T(controller, "ExtDisplay.L.L3", "Line 3: Food / Weight / EXP / Work / Hobby");
+            T(controller, "ExtDisplay.L.L4", "Line 4: Reserved / Extra Character Line");
+            T(controller, "ExtDisplay.L.Res", "Resistances Line");
+            T(controller, "ExtDisplay.L.Att", "Attributes Line: STR / END / DEX / PER / LRN / WIL / MAG / CHA");
+            T(controller, "ExtDisplay.L.AffGift", "Affinity + Favorite Gift Line");
             T(controller, "ExtDisplay.L.Cond", "Conditions Line: Buffs / Debuffs / Diseases");
-            T(controller, "ExtDisplay.L.Act", "Act Line: Active Abilities");
-            T(controller, "ExtDisplay.L.Fea", "Feat Line: Passive Traits");
+            T(controller, "ExtDisplay.L.Act", "Acts Line: Active Abilities");
+            T(controller, "ExtDisplay.L.Fea", "Feats Line: Passive Traits");
         }
 
         private static void T(ModOptionController controller, string key, string english)
@@ -90,6 +96,15 @@ namespace GanExtendDisplay
     <choice><contentId>ExtDisplay.Hide</contentId></choice>
     <choice><contentId>ExtDisplay.Disable</contentId></choice>
   </one_choice>
+
+  <hlayout align=""left"">
+    <toggle id=""tg_itemPrice"" width=""50%"">
+      <contentId>ExtDisplay.ItemPrice</contentId>
+    </toggle>
+    <toggle id=""tg_itemRarity"" width=""50%"">
+      <contentId>ExtDisplay.ItemRarity</contentId>
+    </toggle>
+  </hlayout>
 
   <topic>ExtDisplay.F.Interact</topic>
   <one_choice id=""dd_interactDisp"" type=""dropdown"">
@@ -152,6 +167,8 @@ namespace GanExtendDisplay
         {
             BindDropdown(builder, "dd_charaDisp", ModConfig.CharacterDisplay.Entry);
             BindDropdown(builder, "dd_thingDisp", ModConfig.ThingDisplay.Entry);
+            BindToggle(builder, "tg_itemPrice", ModConfig.ShowItemPrice);
+            BindToggle(builder, "tg_itemRarity", ModConfig.ShowItemRarity);
             BindDropdown(builder, "dd_interactDisp", ModConfig.InteractDisplay.Entry);
             BindDropdown(builder, "dd_notifDisp", ModConfig.NotificationDisplay.Entry);
             BindDropdown(builder, "dd_enchantDisp", ModConfig.EnchantDisplay.Entry);
