@@ -60,6 +60,7 @@ namespace GanExtendDisplay
             T(controller, "ExtDisplay.ItemPrice", "Show Item Price");
             T(controller, "ExtDisplay.ItemRarity", "Show Item Rarity");
 
+            T(controller, "ExtDisplay.L.RaceClass", "Race / Class Line");
             T(controller, "ExtDisplay.L.L1", "Line 1: Identity / Sex / Age / Race / Job");
             T(controller, "ExtDisplay.L.L2", "Line 2: HP / SP / MP / DV / PV / Speed");
             T(controller, "ExtDisplay.L.L3", "Line 3: Food / Weight / EXP / Work / Hobby");
@@ -129,6 +130,7 @@ namespace GanExtendDisplay
 
   <topic>ExtDisplay.Sec.Chara</topic>
   <text align=""left"">ExtDisplay.CharaNote</text>
+" + LineXml("ExtDisplay.L.RaceClass", "dd_lRaceClass", "tg_lRaceClasspcf", "in_lRaceClasssz") + @"
 " + LineXml("ExtDisplay.L.L1", "dd_l1", "tg_l1pcf", "in_l1sz") + @"
 " + LineXml("ExtDisplay.L.L2", "dd_l2", "tg_l2pcf", "in_l2sz") + @"
 " + LineXml("ExtDisplay.L.L3", "dd_l3", "tg_l3pcf", "in_l3sz") + @"
@@ -173,6 +175,7 @@ namespace GanExtendDisplay
             BindDropdown(builder, "dd_notifDisp", ModConfig.NotificationDisplay.Entry);
             BindDropdown(builder, "dd_enchantDisp", ModConfig.EnchantDisplay.Entry);
 
+            BindLine(builder, "dd_lRaceClass", "tg_lRaceClasspcf", "in_lRaceClasssz", ModConfig.CharacterRaceClass);
             BindLine(builder, "dd_l1", "tg_l1pcf", "in_l1sz", ModConfig.CharacterLine1);
             BindLine(builder, "dd_l2", "tg_l2pcf", "in_l2sz", ModConfig.CharacterLine2);
             BindLine(builder, "dd_l3", "tg_l3pcf", "in_l3sz", ModConfig.CharacterLine3);
