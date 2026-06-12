@@ -151,7 +151,7 @@ namespace GanExtendDisplay
 
         private static string LineXml(string titleId, string dropdownId, string toggleId, string inputId)
         {
-            return $@"  <topic>{titleId}</topic>
+            return $@"  <topic>{GetDisplayName(titleId)}</topic>
   <hlayout align=""left"">
     <one_choice id=""{dropdownId}"" type=""dropdown"" width=""40%"">
       <choice><contentId>ExtDisplay.Keep</contentId></choice>
@@ -163,6 +163,48 @@ namespace GanExtendDisplay
     </toggle>
     <input id=""{inputId}"" width=""40%""/>
   </hlayout>";
+        }
+
+        private static string GetDisplayName(string id)
+        {
+            switch (id)
+            {
+                case "ExtDisplay.L.RaceClass":
+                    return "Race / Class";
+
+                case "ExtDisplay.L.L1":
+                    return "Vitals";
+
+                case "ExtDisplay.L.L2":
+                    return "Food / Weight / EXP";
+
+                case "ExtDisplay.L.L3":
+                    return "Reserved Line";
+
+                case "ExtDisplay.L.L4":
+                    return "Reserved Line";
+
+                case "ExtDisplay.L.Att":
+                    return "Attributes";
+
+                case "ExtDisplay.L.Res":
+                    return "Resistances";
+
+                case "ExtDisplay.L.AffGift":
+                    return "Affinity + Favorite Gift";
+
+                case "ExtDisplay.L.Cond":
+                    return "Conditions";
+
+                case "ExtDisplay.L.Act":
+                    return "Abilities";
+
+                case "ExtDisplay.L.Fea":
+                    return "Feats";
+
+                default:
+                    return id;
+            }
         }
 
         private static void OnBuildUI(OptionUIBuilder builder)
