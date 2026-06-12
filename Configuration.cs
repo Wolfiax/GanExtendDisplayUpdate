@@ -78,6 +78,7 @@ namespace GanExtendDisplay
         public static ConfigEntry<bool> ShowItemPrice { get; private set; }
         public static ConfigEntry<bool> ShowItemRarity { get; private set; }
 
+        public static CharacterLineSettings CharacterRaceClass { get; private set; }
         public static CharacterLineSettings CharacterLine1 { get; private set; }
         public static CharacterLineSettings CharacterLine2 { get; private set; }
         public static CharacterLineSettings CharacterLine3 { get; private set; }
@@ -111,7 +112,8 @@ namespace GanExtendDisplay
                 true,
                 "Show item rarity on hover.");
 
-            CharacterLine1 = BindCharacterLine(config, "Display Line1", "Keep", false, 18, "Sex, age, race, job, AI, armor skill, and attack style.");
+            CharacterRaceClass = BindCharacterLine(config, "Display Line Race/Class", "Keep", false, 18, "Race and class/job line.");
+            CharacterLine1 = BindCharacterLine(config, "Display Line1", "Keep", false, 18, "HP, MP, SP, DV, PV, and speed.");
             CharacterLine2 = BindCharacterLine(config, "Display Line2", "Keep", false, 18, "HP, MP, SP, DV, PV, and speed.");
             CharacterLine3 = BindCharacterLine(config, "Display Line3", "Keep", false, 18, "SP, hunger, current work, and current hobbies.");
             CharacterLine4 = BindCharacterLine(config, "Display Line4", "Keep", false, 18, "MP, carried weight versus limit, and experience progress.");
