@@ -27,8 +27,8 @@ namespace GanExtendDisplay
 
         private static int GetBestPrice(Thing thing)
         {
-            // Use Elin's real pricing API first. This accounts for material, rarity,
-            // enchantments, charges, stack state, and current item state better than raw fields.
+            
+            
             try
             {
                 int directPrice = thing.GetPrice(CurrencyType.Money, false, PriceType.Default, null);
@@ -39,7 +39,7 @@ namespace GanExtendDisplay
             {
             }
 
-            // Fallbacks for unusual items or future API changes.
+            
             int fieldPrice = FirstValidInt(
                 ReflectionReader.IntMember(thing, "price", "Price", "value", "Value", "cost", "Cost"),
                 ReflectionReader.IntMember(thing, "source.price", "source.Price", "source.value", "source.Value", "source.cost", "source.Cost"),
