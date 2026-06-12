@@ -31,6 +31,9 @@ namespace GanExtendDisplay
     {
         public static string AppendHarvestTaskInfo(BaseTaskHarvest task, string originalText)
         {
+
+
+            
             string levelText = task.IsTooHard
                 ? $"Lv:{task.toolLv}<{task.reqLv}"
                 : $"Lv:{task.toolLv} >= {task.reqLv}";
