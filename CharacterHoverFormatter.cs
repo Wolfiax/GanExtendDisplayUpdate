@@ -324,17 +324,107 @@ namespace GanExtendDisplay
             int fontSize = Math.Max(ModConfig.CharacterAffinity.FontSize, ModConfig.CharacterFavoriteGift.FontSize);
             result += Environment.NewLine + DisplayText.Size(line, fontSize);
         }
-
         private static string BuildAffinityText(Chara character)
         {
             int affinity = ReflectionReader.IntMember(character, "_affinity", "affinity", "Affinity");
-            if (affinity < 0)
-                affinity = 0;
 
-            string heart = affinity > 74 ? "♥" : "♡";
-            Color color = affinity > 74 ? new Color(1f, 0.45f, 0.65f) : new Color(0.8f, 0.8f, 0.8f);
-            return heart.TagColor(color) + " " + affinity;
+            string label = GetAffinityStageName(affinity);
+            string icon = GetAffinityIcon(affinity);
+            Color color = GetAffinityStageColor(affinity);
+
+            return icon.TagColor(color) + " " + label.TagColor(color) + " (" + affinity + ")";
         }
+
+        private static string GetAffinityStageName(int affinity)
+        {
+            if (affinity >= 1000)
+                return "Love! Love! Love!";
+
+            if (affinity >= 500)
+                return "Love! Love!";
+
+            if (affinity >= 200)
+                return "Love!";
+
+            if (affinity >= 150)
+                return "Fond";
+
+            if (affinity >= 100)
+                return "Intimate";
+
+            if (affinity >= 75)
+                return "Respected";
+
+            if (affinity >= 50)
+                return "Friendly";
+
+            if (affinity >= 25)
+                return "Approved";
+
+            if (affinity >= -10)
+                return "Normal";
+
+            if (affinity >= -30)
+                return "Annoying";
+
+            if (affinity >= -50)
+                return "Hate";
+
+            return "Foe";
+        }
+
+        private static string GetAffinityIcon(int affinity)
+        {
+            if (affinity >= 200)
+                return "♥";
+
+            if (affinity >= 75)
+                return "♡";
+
+            if (affinity <= -50)
+                return "☠";
+
+            return "♡";
+        }
+
+        private static Color GetAffinityStageColor(int affinity)
+        {
+            if (affinity >= 1000)
+                return new Color(1f, 0.15f, 0.75f);
+
+            if (affinity >= 500)
+                return new Color(1f, 0.25f, 0.75f);
+
+            if (affinity >= 200)
+                return new Color(1f, 0.35f, 0.7f);
+
+            if (affinity >= 150)
+                return new Color(1f, 0.55f, 0.75f);
+
+            if (affinity >= 100)
+                return new Color(1f, 0.7f, 0.85f);
+
+            if (affinity >= 75)
+                return new Color(0.55f, 1f, 0.55f);
+
+            if (affinity >= 50)
+                return new Color(0.7f, 1f, 0.7f);
+
+            if (affinity >= 25)
+                return new Color(0.85f, 1f, 0.85f);
+
+            if (affinity >= -10)
+                return Color.white;
+
+            if (affinity >= -30)
+                return new Color(1f, 0.85f, 0.35f);
+
+            if (affinity >= -50)
+                return new Color(1f, 0.55f, 0.25f);
+
+            return new Color(1f, 0.25f, 0.25f);
+        }
+
 
         private static string BuildFavoriteGiftText(Chara character)
         {
