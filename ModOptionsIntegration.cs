@@ -19,7 +19,7 @@ namespace GanExtendDisplay
             {
                 ModOptionController controller = ModOptionController.Register(
                     Plugin.PluginGuid,
-                    "Extend Display",
+                    "ExtDisplay.Tab",
                     new object[] { TabId });
 
                 SetTranslations(controller);
@@ -37,45 +37,48 @@ namespace GanExtendDisplay
 
         private static void SetTranslations(ModOptionController controller)
         {
-            T(controller, TabId, "Extend Display");
+            // ModOptions v0.23.x overload:
+            // SetTranslation(id, en, jp, cn)
+            T(controller, TabId, "Extend Display", "拡張表示", "扩展显示");
 
-            T(controller, "ExtDisplay.Sec.Affected", "Affected Display");
-            T(controller, "ExtDisplay.Sec.Chara", "Character Display Lines");
+            T(controller, "ExtDisplay.Sec.Affected", "Affected Display", "表示対象", "影响的显示");
+            T(controller, "ExtDisplay.Sec.Chara", "Character Display Lines", "キャラクター表示行", "角色显示行");
 
-            T(controller, "ExtDisplay.Keep", "Keep (always visible)");
-            T(controller, "ExtDisplay.Hide", "Hide (Alt to reveal)");
-            T(controller, "ExtDisplay.Disable", "Disable (never shown)");
+            T(controller, "ExtDisplay.Keep", "Keep (always visible)", "常に表示", "保持显示");
+            T(controller, "ExtDisplay.Hide", "Hide (Alt to reveal)", "隠す（Altで表示）", "隐藏（按 Alt 显示）");
+            T(controller, "ExtDisplay.Disable", "Disable (never shown)", "無効", "禁用");
 
-            T(controller, "ExtDisplay.PCFac", "PC Faction Only");
-            T(controller, "ExtDisplay.IPL", "Items Per Line (0 = no limit)");
-            T(controller, "ExtDisplay.CharaNote", "Character line changes take effect immediately.");
+            T(controller, "ExtDisplay.PCFac", "PC Faction Only", "PC陣営のみ", "仅玩家阵营");
+            T(controller, "ExtDisplay.IPL", "Items Per Line (0 = no limit)", "1行あたりの項目数（0 = 制限なし）", "每行项目数（0 = 无限制）");
+            T(controller, "ExtDisplay.CharaNote", "Character line changes take effect immediately.", "キャラクター表示行の変更はすぐに反映されます。", "角色显示行设置会立即生效。");
 
-            T(controller, "ExtDisplay.F.Chara", "Character Display");
-            T(controller, "ExtDisplay.F.Thing", "Thing Display (Ground Items)");
-            T(controller, "ExtDisplay.F.Interact", "Interact Display (Harvesting)");
-            T(controller, "ExtDisplay.F.Notif", "Notification UI Display");
-            T(controller, "ExtDisplay.F.Enchant", "Enchant Display (Equipment / DNA)");
-            T(controller, "ExtDisplay.F.AffectedNote", "Choose which tooltip groups Gan Extend Display is allowed to modify.");
+            T(controller, "ExtDisplay.F.Chara", "Character Display", "キャラクター表示", "角色显示");
+            T(controller, "ExtDisplay.F.Thing", "Thing Display (Ground Items)", "アイテム表示（地面アイテム）", "物品显示（地面物品）");
+            T(controller, "ExtDisplay.F.Interact", "Interact Display (Harvesting)", "インタラクト表示（採集）", "互动显示（采集）");
+            T(controller, "ExtDisplay.F.Notif", "Notification UI Display", "通知UI表示", "通知界面显示");
+            T(controller, "ExtDisplay.F.Enchant", "Enchant Display (Equipment / DNA)", "エンチャント表示（装備 / DNA）", "附魔显示（装备 / DNA）");
+            T(controller, "ExtDisplay.F.AffectedNote", "Choose which tooltip groups Gan Extend Display is allowed to modify.", "Gan Extend Display が変更できるツールチップの種類を選択します。", "选择 Gan Extend Display 可以修改哪些提示信息。");
 
-            T(controller, "ExtDisplay.ItemPrice", "Show Item Price");
-            T(controller, "ExtDisplay.ItemRarity", "Show Item Rarity");
+            T(controller, "ExtDisplay.ItemPrice", "Show Item Price", "アイテム価格を表示", "显示物品价格");
+            T(controller, "ExtDisplay.ItemRarity", "Show Item Rarity", "アイテム希少度を表示", "显示物品稀有度");
+            T(controller, "ExtDisplay.LockLevel", "Show Lock Level", "ロックレベルを表示", "显示锁等级");
 
-            T(controller, "ExtDisplay.L.RaceClass", "Race / Class Line");
-            T(controller, "ExtDisplay.L.L1", "Line 1: Identity / Sex / Age / Race / Job");
-            T(controller, "ExtDisplay.L.L2", "Line 2: HP / SP / MP / DV / PV / Speed");
-            T(controller, "ExtDisplay.L.L3", "Line 3: Food / Weight / EXP / Work / Hobby");
-            T(controller, "ExtDisplay.L.L4", "Line 4: Reserved / Extra Character Line");
-            T(controller, "ExtDisplay.L.Res", "Resistances Line");
-            T(controller, "ExtDisplay.L.Att", "Attributes Line: STR / END / DEX / PER / LRN / WIL / MAG / CHA");
-            T(controller, "ExtDisplay.L.AffGift", "Affinity + Favorite Gift Line");
-            T(controller, "ExtDisplay.L.Cond", "Conditions Line: Buffs / Debuffs / Diseases");
-            T(controller, "ExtDisplay.L.Act", "Acts Line: Active Abilities");
-            T(controller, "ExtDisplay.L.Fea", "Feats Line: Passive Traits");
+            T(controller, "ExtDisplay.L.RaceClass", "Gender / Race / Class", "性別 / 種族 / 職業", "性别 / 种族 / 职业");
+            T(controller, "ExtDisplay.L.L1", "Vitals", "主要ステータス", "主要数值");
+            T(controller, "ExtDisplay.L.L2", "Food / Weight / EXP", "空腹度 / 重量 / 経験値", "饱食度 / 重量 / 经验");
+            T(controller, "ExtDisplay.L.L3", "Reserved Line", "予約行", "预留行");
+            T(controller, "ExtDisplay.L.L4", "Reserved Line", "予約行", "预留行");
+            T(controller, "ExtDisplay.L.Res", "Resistances", "耐性", "抗性");
+            T(controller, "ExtDisplay.L.Att", "Attributes", "能力値", "属性");
+            T(controller, "ExtDisplay.L.AffGift", "Affinity + Favorite Gift", "好感度 + 好きな贈り物", "好感度 + 喜欢的礼物");
+            T(controller, "ExtDisplay.L.Cond", "Conditions", "状態", "状态");
+            T(controller, "ExtDisplay.L.Act", "Abilities", "アビリティ", "能力");
+            T(controller, "ExtDisplay.L.Fea", "Feats", "フィート", "特质");
         }
 
-        private static void T(ModOptionController controller, string key, string english)
+        private static void T(ModOptionController controller, string id, string english, string japanese, string chinese)
         {
-            controller.SetTranslation(key, english, english);
+            controller.SetTranslation(id, english, japanese, chinese);
         }
 
         private static string BuildXml()
@@ -85,48 +88,31 @@ namespace GanExtendDisplay
   <text align=""left"">ExtDisplay.F.AffectedNote</text>
 
   <topic>ExtDisplay.F.Chara</topic>
-  <one_choice id=""dd_charaDisp"" type=""dropdown"">
-    <choice><contentId>ExtDisplay.Keep</contentId></choice>
-    <choice><contentId>ExtDisplay.Hide</contentId></choice>
-    <choice><contentId>ExtDisplay.Disable</contentId></choice>
-  </one_choice>
+  " + DisplayDropdownXml("dd_charaDisp") + @"
 
   <topic>ExtDisplay.F.Thing</topic>
-  <one_choice id=""dd_thingDisp"" type=""dropdown"">
-    <choice><contentId>ExtDisplay.Keep</contentId></choice>
-    <choice><contentId>ExtDisplay.Hide</contentId></choice>
-    <choice><contentId>ExtDisplay.Disable</contentId></choice>
-  </one_choice>
+  " + DisplayDropdownXml("dd_thingDisp") + @"
 
   <hlayout align=""left"">
-    <toggle id=""tg_itemPrice"" width=""50%"">
+    <toggle id=""tg_itemPrice"" width=""33%"">
       <contentId>ExtDisplay.ItemPrice</contentId>
     </toggle>
-    <toggle id=""tg_itemRarity"" width=""50%"">
+    <toggle id=""tg_itemRarity"" width=""33%"">
       <contentId>ExtDisplay.ItemRarity</contentId>
+    </toggle>
+    <toggle id=""tg_lockLevel"" width=""34%"">
+      <contentId>ExtDisplay.LockLevel</contentId>
     </toggle>
   </hlayout>
 
   <topic>ExtDisplay.F.Interact</topic>
-  <one_choice id=""dd_interactDisp"" type=""dropdown"">
-    <choice><contentId>ExtDisplay.Keep</contentId></choice>
-    <choice><contentId>ExtDisplay.Hide</contentId></choice>
-    <choice><contentId>ExtDisplay.Disable</contentId></choice>
-  </one_choice>
+  " + DisplayDropdownXml("dd_interactDisp") + @"
 
   <topic>ExtDisplay.F.Notif</topic>
-  <one_choice id=""dd_notifDisp"" type=""dropdown"">
-    <choice><contentId>ExtDisplay.Keep</contentId></choice>
-    <choice><contentId>ExtDisplay.Hide</contentId></choice>
-    <choice><contentId>ExtDisplay.Disable</contentId></choice>
-  </one_choice>
+  " + DisplayDropdownXml("dd_notifDisp") + @"
 
   <topic>ExtDisplay.F.Enchant</topic>
-  <one_choice id=""dd_enchantDisp"" type=""dropdown"">
-    <choice><contentId>ExtDisplay.Keep</contentId></choice>
-    <choice><contentId>ExtDisplay.Hide</contentId></choice>
-    <choice><contentId>ExtDisplay.Disable</contentId></choice>
-  </one_choice>
+  " + DisplayDropdownXml("dd_enchantDisp") + @"
 
   <topic>ExtDisplay.Sec.Chara</topic>
   <text align=""left"">ExtDisplay.CharaNote</text>
@@ -149,9 +135,18 @@ namespace GanExtendDisplay
 </config>";
         }
 
+        private static string DisplayDropdownXml(string id)
+        {
+            return $@"<one_choice id=""{id}"" type=""dropdown"">
+    <choice><contentId>ExtDisplay.Keep</contentId></choice>
+    <choice><contentId>ExtDisplay.Hide</contentId></choice>
+    <choice><contentId>ExtDisplay.Disable</contentId></choice>
+  </one_choice>";
+        }
+
         private static string LineXml(string titleId, string dropdownId, string toggleId, string inputId)
         {
-            return $@"  <topic>{GetDisplayName(titleId)}</topic>
+            return $@"  <topic>{titleId}</topic>
   <hlayout align=""left"">
     <one_choice id=""{dropdownId}"" type=""dropdown"" width=""40%"">
       <choice><contentId>ExtDisplay.Keep</contentId></choice>
@@ -165,54 +160,13 @@ namespace GanExtendDisplay
   </hlayout>";
         }
 
-        private static string GetDisplayName(string id)
-        {
-            switch (id)
-            {
-                case "ExtDisplay.L.RaceClass":
-                    return "Race / Class";
-
-                case "ExtDisplay.L.L1":
-                    return "Vitals";
-
-                case "ExtDisplay.L.L2":
-                    return "Food / Weight / EXP";
-
-                case "ExtDisplay.L.L3":
-                    return "Reserved Line";
-
-                case "ExtDisplay.L.L4":
-                    return "Reserved Line";
-
-                case "ExtDisplay.L.Att":
-                    return "Attributes";
-
-                case "ExtDisplay.L.Res":
-                    return "Resistances";
-
-                case "ExtDisplay.L.AffGift":
-                    return "Affinity + Favorite Gift";
-
-                case "ExtDisplay.L.Cond":
-                    return "Conditions";
-
-                case "ExtDisplay.L.Act":
-                    return "Abilities";
-
-                case "ExtDisplay.L.Fea":
-                    return "Feats";
-
-                default:
-                    return id;
-            }
-        }
-
         private static void OnBuildUI(OptionUIBuilder builder)
         {
             BindDropdown(builder, "dd_charaDisp", ModConfig.CharacterDisplay.Entry);
             BindDropdown(builder, "dd_thingDisp", ModConfig.ThingDisplay.Entry);
             BindToggle(builder, "tg_itemPrice", ModConfig.ShowItemPrice);
             BindToggle(builder, "tg_itemRarity", ModConfig.ShowItemRarity);
+            BindToggle(builder, "tg_lockLevel", ModConfig.ShowLockLevel);
             BindDropdown(builder, "dd_interactDisp", ModConfig.InteractDisplay.Entry);
             BindDropdown(builder, "dd_notifDisp", ModConfig.NotificationDisplay.Entry);
             BindDropdown(builder, "dd_enchantDisp", ModConfig.EnchantDisplay.Entry);
