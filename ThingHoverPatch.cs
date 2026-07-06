@@ -54,21 +54,30 @@ namespace GanExtendDisplay
             if (contentsPrice > 0)
             {
                 int totalPrice = containerPrice + contentsPrice;
+                string lockText = ModConfig.ShowLockLevel.Value && thing.c_lockLv > 0
+                    ? " | Lock Lv." + thing.c_lockLv
+                    : string.Empty;
 
                 return ("Price: " + totalPrice.ToString("N0") + " oren"
-                    + " (Container: " + containerPrice.ToString("N0")
-                    + " + Contents: " + contentsPrice.ToString("N0") + ")")
+                    + lockText
+                    + "\n(Container: " + containerPrice.ToString("N0")
+                    + " | Contents: " + contentsPrice.ToString("N0") + ")")
                     .TagColor(new Color(1.00f, 0.85f, 0.25f));
             }
+
+            string lockTextSingle = ModConfig.ShowLockLevel.Value && thing.c_lockLv > 0
+                ? " | Lock Lv." + thing.c_lockLv
+                : string.Empty;
 
             if (stackCount > 1)
             {
                 return ("Price: " + containerPrice.ToString("N0") + " oren"
+                    + lockTextSingle
                     + " (" + unitPrice.ToString("N0") + " x " + stackCount + ")")
                     .TagColor(new Color(1.00f, 0.85f, 0.25f));
             }
 
-            return ("Price: " + containerPrice.ToString("N0") + " oren")
+            return ("Price: " + containerPrice.ToString("N0") + " oren" + lockTextSingle)
                 .TagColor(new Color(1.00f, 0.85f, 0.25f));
         }
 
@@ -76,7 +85,7 @@ namespace GanExtendDisplay
         {
             int total = 0;
 
-            
+            // Try the most common container/content member names.
             object contents =
                 ReflectionReader.Member(thing, "things")
                 ?? ReflectionReader.Member(thing, "Things")
