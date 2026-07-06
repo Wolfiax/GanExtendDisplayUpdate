@@ -68,6 +68,7 @@ namespace GanExtendDisplay
     internal static class ModConfig
     {
         private static readonly AcceptableValueList<string> DisplayOptions = new AcceptableValueList<string>("Keep", "Hide", "Disable");
+        private static readonly AcceptableValueList<string> LanguageOptions = new AcceptableValueList<string>("English", "Chinese");
 
         public static DisplayToggle CharacterDisplay { get; private set; }
         public static DisplayToggle ThingDisplay { get; private set; }
@@ -77,6 +78,8 @@ namespace GanExtendDisplay
 
         public static ConfigEntry<bool> ShowItemPrice { get; private set; }
         public static ConfigEntry<bool> ShowItemRarity { get; private set; }
+        public static ConfigEntry<string> ModOptionsLanguage { get; private set; }
+        public static ConfigEntry<bool> ShowLockLevel { get; private set; }
 
         public static CharacterLineSettings CharacterRaceClass { get; private set; }
         public static CharacterLineSettings CharacterLine1 { get; private set; }
@@ -112,7 +115,19 @@ namespace GanExtendDisplay
                 true,
                 "Show item rarity on hover.");
 
-            CharacterRaceClass = BindCharacterLine(config, "Display Line Race/Class", "Keep", false, 18, "Race and class/job line.");
+            ShowLockLevel = config.Bind(
+                "Thing Display",
+                "Show Lock Level",
+                true,
+                "Show lock level on locked item and container hover tooltips.");
+
+            ModOptionsLanguage = config.Bind(
+                "ModOptions",
+                "Language",
+                "English",
+                new ConfigDescription("Language used by the ModOptions settings page. Options: English, Chinese.", LanguageOptions));
+
+            CharacterRaceClass = BindCharacterLine(config, "Display Line Race/Class", "Keep", false, 18, "Gender, race, and class/job line.");
             CharacterLine1 = BindCharacterLine(config, "Display Line1", "Keep", false, 18, "HP, MP, SP, DV, PV, and speed.");
             CharacterLine2 = BindCharacterLine(config, "Display Line2", "Keep", false, 18, "HP, MP, SP, DV, PV, and speed.");
             CharacterLine3 = BindCharacterLine(config, "Display Line3", "Keep", false, 18, "SP, hunger, current work, and current hobbies.");
