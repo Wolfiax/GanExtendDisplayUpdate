@@ -70,6 +70,7 @@ namespace GanExtendDisplay
             result = Regex.Replace(result, @"(?m)^.*\bWeight\s*:[^\r\n]*(?:\r?\n)?", string.Empty);
             result = Regex.Replace(result, @"(?mi)^.*\bEXP\s*[:：][^\r\n]*(?:\r?\n)?", string.Empty);
             result = Regex.Replace(result, @"(?mi)^.*\bExperience\s*[:：][^\r\n]*(?:\r?\n)?", string.Empty);
+            result = Regex.Replace(result, @"(?mi)^.*\bGender\s*:[^\r\n]*(?:\r?\n)?", string.Empty);
             result = Regex.Replace(result, @"(?mi)^.*\bRace\s*:[^\r\n]*(?:\r?\n)?", string.Empty);
 
             return result.TrimEnd();
@@ -460,8 +461,17 @@ namespace GanExtendDisplay
         }
         private static string BuildRaceClassLine(Chara character)
         {
+            string gender = "Unknown";
             string race = "Unknown";
             string job = "Unknown";
+
+            try
+            {
+                gender = ToDisplayName(Lang._gender(character.bio.gender));
+            }
+            catch
+            {
+            }
 
             try
             {
@@ -481,8 +491,9 @@ namespace GanExtendDisplay
             {
             }
 
-            return "Race: " + race + " | Class: " + job;
+            return "Gender: " + gender + " | Race: " + race + " | Class: " + job;
         }
+
 
         private static string ToDisplayName(string value)
         {
